@@ -15,17 +15,17 @@ label is not graded.
 
 **GitHub username**
 
-[Your GitHub username, exactly as it appears on your profile - no @, no
-profile URL. Your comment upstream is identified by this name, and it is
-the only thing that ties it to you. Several students may plan the same
-house issue, so this is what keeps their comments off your score and
-yours off theirs.]
+BenitaMags
 
 **Plan comment**
 
-[Link to the comment where you posted your plan on the issue. Use the comment's own
-permalink. **Then paste the text of that comment underneath the link** — the pasted text is
-what this field is graded on, so copy across what you actually posted.]
+https://github.com/codepath/pathreview-ai301-fa26-s3/issues/53#issuecomment-6157164332
+
+I reproduced issue #53 ([reproduction comment](https://github.com/codepath/pathreview-ai301-fa26-s3/issues/53#issuecomment-5857853526)). The `phone_us` pattern at `safety/pii_scrubber.py:16` has a leading `\b` that prevents a match from starting at `(`, and its `-` or `.` separators exclude the spaces in `(555) 123-4567` and `+1 555 123 4567`.
+
+I also ran `pytest tests/unit/test_pii_scrubber.py -q --runxfail -k test_mixed_pii_and_text`. It fails at `assert "Python" in scrubbed`; the output contains `[REDACTED]ications.`, while the dashed phone is redacted. I’ll leave that test’s `xfail` marker and the address pattern unchanged because this is a separate false positive.
+
+I plan to update the US phone pattern and its tests on branch `fix/53-parenthesized-us-phone`. I used Claude to help analyze the issue and draft this comment; I’ll review the code changes and verify the test results before submitting a PR.
 
 ---
 
@@ -33,45 +33,52 @@ what this field is graded on, so copy across what you actually posted.]
 
 **Branch**
 
-[The name of the branch you built the change on, exactly as it appears in your fork. The
-naming shape is a type prefix, then the issue number, then a short description. **The issue
-number in the branch name must be the number of the issue you claimed** — a name carrying
-any other number does not satisfy this field.]
+fix/53-parenthesized-us-phone
 
 **Evidence**
 
-[Your Unit 2 reproduction steps re-run against the built change: the before, then the
-after. Paste both, including the commands you ran and their output.]
+Before the change, my reproduction for issue #53 showed that `(555) 123-4567` remained unredacted and `detect()` returned no match. I recorded this in my reproduction comment linked above.
+
+After the change, I ran:
+python - <<'PY'
+from safety.pii_scrubber import PIIScrubber
+
+scrubber = PIIScrubber()
+text = "Call me at (555) 123-4567 or 555-123-4567"
+print("scrub:", scrubber.scrub(text))
+print("detect:", scrubber.detect("Call me at (555) 123-4567"))
+PY
+
+Output:
+scrub: Call me at [REDACTED] or [REDACTED]
+detect: [{'type': 'phone_us', 'value': '(555) 123-4567', 'start': 11, 'end': 25}]
 
 ## Eval iterations
 
-Answer all four sections. Quote source text directly; paraphrase does not satisfy these
-fields.
-
 **Run history**
 
-[The agreement score of each run you did, in order. A single run is a complete answer if
-only one run occurred. **The last score in your list must match the agreement line in the
-`eval-run.txt` you committed** — that file is the record of your final run.]
+3/3 (partial run, --limit 3)
+17/20 (full run)
+3/4 (partial canary run)
+19/20 (full run)
+17/20 (full run, saved to eval-run.txt)
+3/3 (partial clear-accept run)
+20/20 (full run)
+20/20 (final full run, saved to eval-run.txt)
 
 **Package analysis**
 
-[Pick one scored package (`pkg-01` through `pkg-20` — the four `calib-` packages are never
-scored). Name it by id, say what your rubric decided and what the gold label said, and
-explain why your rubric read it that way.]
+For pkg-04, my rubric rejected the plan, matching the gold label of reject. The issue expects keys to reach `less` without a redirection workaround, and the maintainer had traced the problem to console input handling in `src/tui/light_windows.go`. The proposed plan was documentation only and explicitly excluded changes to fzf’s input handling, so it documented a workaround without addressing the reported behavior.
 
 **Check rationale**
 
-[Quote one check from the `rubric.md` you uploaded to `tools/plan-check/`, exactly as it reads now.
-Then say why it reads that way — what you revised to get there, or what you rejected in
-favour of it.]
+“Scope is controlled” — “The proposed change addresses the issue's stated expected behavior and relevant maintainer guidance, and is limited to what is needed. Any broader changes are justified by evidence, and unrelated features or refactors are excluded. A workaround or documentation change alone does not pass when the issue expects the underlying behavior to be fixed.”
+
+I added the requirement to consider the issue’s expected behavior and maintainer guidance after the initial evaluation accepted pkg-04 and pkg-20, even though both gold labels were reject. The explicit workaround sentence helps catch pkg-04’s documentation-only plan, which didn’t address the underlying behavior.
 
 **Trade-offs**
 
-[Every check gives something up. Any one of these is a complete answer: a package whose
-result it changes, a canary you re-ran with `--only`, a case you accept it will miss, or a
-stated reason nothing changed elsewhere. "Nothing changed, and here is how I know" earns
-the point in full when the reason follows.]
+The revised scope check can reject a documentation-only plan even when its workaround is useful. I accept that trade-off for pkg-04 because the issue expects keys to reach `less` without a workaround. I reran pkg-04 and pkg-20 as canaries; both were rejected, matching their gold labels.
 
 ---
 
