@@ -37,9 +37,23 @@ fix/53-parenthesized-us-phone
 
 **Evidence**
 
-Before the change, my reproduction for issue #53 showed that `(555) 123-4567` remained unredacted and `detect()` returned no match. I recorded this in my reproduction comment linked above.
+Before:
+Command:
+python -c "
+from safety.pii_scrubber import PIIScrubber
+s = PIIScrubber()
+print('scrub:', repr(s.scrub('Call me at (555) 123-4567 or 555-123-4567')))
+print('detect paren:', s.detect('Call me at (555) 123-4567'))
+print('detect dashed:', s.detect('Call me at 555-123-4567'))
+"
 
-After the change, I ran:
+Output:
+scrub: 'Call me at (555) 123-4567 or [REDACTED]'
+detect paren: []
+detect dashed: [{'type': 'phone_us', 'value': '555-123-4567', 'start': 11, 'end': 23}]
+
+After:
+Command:
 python - <<'PY'
 from safety.pii_scrubber import PIIScrubber
 
