@@ -57,8 +57,9 @@ one in the week it belongs to.
 
 **Unit 5: [one line on the tool work]**
 
-[2-4 sentences: what you built (the scout, your strategy), what broke
-or fell short, what changed because of it.]
+### Unit 5: Built and tested an issue scout for first-contribution candidates
+
+I updated my issue-selection tool into an issue scout with a search strategy and rubric for checking maintainer activity, repository activity, issue scope, availability, contribution policy, and clarity. My first scan did not run because I had left the search queries and ranking filters inside template comments; I moved them outside the comments and reran it. Grading my candidate issues taught me that a “good first issue” label alone is not enough: a maintainer’s unresolved concern can make an issue a poor choice. I recorded that lesson in my scan notes.
 
 **Unit 6: [one line on the tool work]**
 
@@ -278,5 +279,5 @@ already shows you using: the doc you followed to set the environment
 up, the thread that explained the bug, the person who answered you.
 One real entry beats ten plausible ones.]
 
-- [Link to documentation that helped]
-- [Discussion, issue, or post that helped]
+- [Assignment 5 instructions](https://github.com/codepath/ai301-unit5-starter)
+- [AI301 Issue Selection site](https://ai301-issue-selection.vercel.app/)
