@@ -1,104 +1,47 @@
-# Contribution: [Issue Title]
+# Contribution: Add sync coverage for mismatched task data
 
 Path: `beat-2-contribution/contribution-story.md`
 
-This file is Assignment 5, and it is graded at the path above; a copy kept anywhere else in
-the repository is not read. **Keep every section header below under its exact name** — the
-format criteria grade exactly that. Your course repo link is the whole submission: no tool
-files and no evidence uploads are part of Assignment 5.
-
-**Contribution Number:** [1]
-**Student:** [Student name]
-**GitHub Username:** [your GitHub username, exactly as it appears on your profile - no @, no
-profile URL. Your comments upstream are identified by this name.]
-**Issue:** [GitHub issue link]
-**Pull Request:** [GitHub PR link, once opened]
-
-One repository, built across units 5 to 8, telling the whole story of your real
-contribution. Fill it as you work, not at the end — the sections below ask for evidence that
-is far easier to write down as it happens than to reconstruct in the last weekend.
-
-Contribution Number stays `[1]` unless you make more than one contribution this term; it
-just numbers them.
+**Contribution Number:** [1]  
+**Student:** Benita Magdalene Kingsley Prince  
+**GitHub Username:** BenitaMags  
+**Issue:** https://github.com/GothenburgBitFactory/taskchampion/issues/410  
+**Pull Request:** https://github.com/GothenburgBitFactory/taskchampion/pull/795
 
 ---
 
 ## Toolkit
 
-Every story section below, from Why I Chose This Issue through Pull
-Request, ends with a Toolkit block: which tool did that phase's work
-and how you used it, what it produced, what difficulties or
-shortcomings it presented, and what you changed or would change
-because of them. Together the blocks are the thread the rubric's
-Toolkit points read, and they are the raw material for your unit-9
-portfolio, so keep them current as you work rather than
-reconstructing them later.
+**Unit 5: Built and tested an issue scout for first-contribution candidates**
 
-A Toolkit block looks like this (copy it into each story section and
-fill it there):
+I updated my issue-selection tool into an issue scout with a search strategy and rubric for checking maintainer activity, repository activity, issue scope, availability, contribution policy, and clarity. My first scan did not run because I had left the search queries and ranking filters inside template comments; I moved them outside the comments and reran it. Grading candidate issues taught me that a “good first issue” label alone is not enough when a maintainer has raised an unresolved concern. I recorded scan problems and lessons in my scan notes.
 
-```text
-**Toolkit**
+**Unit 6: No verified Unit 6 tool work recorded**
 
-- Tool: [which tool did this phase's work, and how you used it]
-- What it produced: [described in a sentence or a short excerpt]
-- Difficulties: [what fought you or fell short, or "none met"]
-- What changed: [the patch, revision, or workaround, what you would
-  update, or "nothing"]
-```
+I have no completed voice-guard or repo-memory work recorded in the materials available for this story, so I cannot report an output or a change for those tools.
 
-This section also keeps one short dated entry per week of tool work,
-starting below: what you built or changed that week, what broke, and
-what you changed because of it. The blocks tell the story where it
-happened; these entries are the toolkit's own timeline.
+**Unit 7: No verified Unit 7 tool work recorded**
 
-All four entries are graded. Keep every heading below, and fill each
-one in the week it belongs to.
+I have no completed ship-gate or gate-manifest work recorded in the materials available for this story, so I cannot report an output or a change for those tools.
 
-**Unit 5: [one line on the tool work]**
+**Unit 8: No verified Unit 8 tool work recorded**
 
-### Unit 5: Built and tested an issue scout for first-contribution candidates
-
-I updated my issue-selection tool into an issue scout with a search strategy and rubric for checking maintainer activity, repository activity, issue scope, availability, contribution policy, and clarity. My first scan did not run because I had left the search queries and ranking filters inside template comments; I moved them outside the comments and reran it. Grading my candidate issues taught me that a “good first issue” label alone is not enough: a maintainer’s unresolved concern can make an issue a poor choice. I recorded that lesson in my scan notes.
-
-**Unit 6: [one line on the tool work]**
-
-[2-4 sentences: the voice-guard, the repo-memory file. What broke or
-fell short, and what changed because of it. "Nothing broke" counts when
-it is true - say how you know.]
-
-**Unit 7: [one line on the tool work]**
-
-[2-4 sentences: the ship-gate and your gate manifest. What it produced
-on your real branch, what fought you, what changed because of it.]
-
-**Unit 8: [one line on the tool work]**
-
-[2-4 sentences: the PR-monitor and your playbook. What it read, what it
-drafted, what you did with the draft.]
+I have no completed PR-monitor or playbook work recorded in the materials available for this story. I began the TaskChampion contribution work described below on November 10, after the stated Assignment 5 deadline, so I have not backdated it as Unit 8 work.
 
 ---
 
 ## Why I Chose This Issue
 
-[1-2 paragraphs in your own words: how you searched, what your scan
-surfaced, what your scout's verdict said, why this issue fits your
-profile, and what you hope to learn. If your scout's verdict on it
-was reject and you chose it anyway, say so here and say why; choosing
-against your own tool silently is what loses points. Close with an
-honest read of the tool itself: where the scout fell short on a real
-wild search and what you changed or would change, or what convinced
-you it held up. **Record the link to your claim comment in this section too.**
-Not claimed yet? Write `claim pending` and today's date where the link goes,
-and add the link the moment your claim lands.]
+I chose TaskChampion issue #410 after reviewing candidates from the AI301 Issue Selection site and asking my issue scout to grade it. The scout accepted it, and the maintainer suggested starting with one integration test. I wanted to learn how TaskChampion keeps task data and operation history consistent and how its sync tests work. Rust was new to me, and the issue’s overall scope was broad, so I asked the maintainer about a focused first test before coding. The maintainer approved my proposed test, and I added coverage for a manually changed SQLite task row while checking that sync succeeds and an unrelated task stays unchanged.
+
+The scout helped me compare activity, availability, scope, and repository policies, but its “accept” verdict did not mean the issue was automatically a perfect fit. I still needed to consider that the codebase uses Rust and clarify the starting scope with the maintainer. My claim comment is https://github.com/GothenburgBitFactory/taskchampion/issues/410#issuecomment-6754590645.
 
 **Toolkit**
 
-- Tool: issue-scout (your scout: your search strategy, your rubric),
-  and how you used it
-- What it produced: [the scan and its verdict on this issue, described]
-- Difficulties: [where it fell short, or "none met" if none did]
-- What changed: [what you patched or would update, or "nothing"]
+- Tool: issue-scout, using my search strategy and rubric to scan and grade candidates.
+- What it produced: Candidate issue results and an accepted verdict for TaskChampion #410.
+- Difficulties: My first scan did not run because queries and ranking filters were inside template comments. Later, the scan favored very new issues, and the accepted issue used a language outside my stated experience.
+- What changed: I moved the queries and filters outside the comments, recorded ranking and fit problems in scan notes, and asked the maintainer to confirm a focused starting scope.
 
 ---
 
@@ -106,26 +49,26 @@ and add the link the moment your claim lands.]
 
 **Problem Description**
 
-[In your own words, what is broken or missing?]
+TaskChampion stores current task data and its operation history separately. If someone edits the SQLite database directly, those can disagree and violate the replica invariant. The issue asks for tests showing how sync behaves when that happens.
 
 **Expected Behavior**
 
-[What should happen?]
+Sync should complete without crashing, and the effects of a manual database edit should stay limited to the affected task. Other tasks should remain consistent between replicas.
 
 **Current Behavior**
 
-[What actually happens?]
+The issue concerns missing test coverage rather than a specific reported crash. In my test, I manually changed one task’s SQLite data without changing its operation history. Sync completed; that task remained different between the replicas, while the other task stayed the same on both.
 
 **Affected Components**
 
-[Which parts of the codebase are involved?]
+The SQLite `tasks` and `operations` tables hold state that can become inconsistent. Sync behavior is handled in `src/taskdb/sync.rs` and `src/taskdb/apply.rs`. My integration test is in `tests/sqlite-task-mismatch-sync.rs`.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: GitHub issue #410 and the TaskChampion source and test files.
+- What it produced: An understanding of the replica invariant and the existing sync test patterns.
+- Difficulties: The issue linked to an older test path, and the existing sync tests used in-memory storage.
+- What changed: I used the current SQLite storage and sync APIs in a separate integration test after confirming the test scope with the maintainer.
 
 ---
 
@@ -133,31 +76,26 @@ and add the link the moment your claim lands.]
 
 **Environment Setup**
 
-[What a stranger would need to stand this up: your operating system,
-the relevant versions (language, runtime, package manager, the project
-itself), and how you set the project up. Then the challenges you faced
-and how you solved them, or that none came up.]
+I used macOS with Rust `rustc 1.99.1 (58cf8f9c3 2026-10-13)` and Cargo `1.99.1 (5f94df478 2026-08-27)`. I cloned the TaskChampion repository and ran the integration tests with Cargo.
 
 **Steps to Reproduce**
 
-1. [Step 1]
-2. [Step 2]
-3. [Observed result]
+1. Create a SQLite-backed replica with two tasks and sync it to a second replica.
+2. Close the SQLite-backed replica. Directly change one task’s `description` in the SQLite `tasks` table without changing the `operations` table.
+3. Reopen the replica and sync both replicas.
 
 **Reproduction Evidence**
 
-- **Commit showing reproduction:** [link to commit in your fork]
-- **Screenshots/logs:** [if applicable]
-- **My findings:** [what you discovered during reproduction; an
-  honest, evidenced cannot-reproduce that led you to re-pick or ask
-  the maintainer belongs here and costs you nothing]
+- **Commit showing reproduction:** https://github.com/BenitaMags/taskchampion/commit/e18ef72d71e28393a43ed9341efb3d4f5ad05b89
+- **Screenshots/logs:** The focused integration test passed: 1 passed. The full `cargo test` run also passed.
+- **My findings:** The manual edit creates a mismatch between the task row and operation history. In this test, sync completed, the edited task stayed different between replicas, and the other task remained unchanged.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: Terminal, Cargo, and the TaskChampion integration-test setup.
+- What it produced: A repeatable SQLite-backed test for a manual task-data edit followed by sync.
+- Difficulties: The initial sync tests used in-memory storage, so they could not create the SQLite mismatch.
+- What changed: I added a separate SQLite-backed integration test and verified it with the focused test and full test suite.
 
 ---
 
@@ -165,93 +103,81 @@ and how you solved them, or that none came up.]
 
 **Analysis**
 
-[Your analysis of the root cause: what is causing the issue, traced
-to the files and functions involved.]
+A manual edit to the SQLite `tasks` row can break the replica invariant without changing the `operations` table. The issue asks for tests that check how sync behaves in these situations.
 
 **Proposed Solution**
 
-[High-level description of your fix approach, and what you are
-deliberately NOT changing.]
+Add an integration test that manually changes one task’s SQLite data while leaving its operation history unchanged. Verify that sync completes, that the edited task may differ between replicas, and that an unrelated task remains unchanged on both. This PR adds test coverage and does not change production code.
 
 **Implementation Plan**
 
-1. [Modify file X to do Y]
-2. [Add or change Z]
-3. [Update tests]
-
-[Record deviations here as they happen: what changed mid-build and
-why. A recorded deviation is honest work; silent drift is not.]
+1. Create two tasks in a SQLite-backed replica and sync them to a second replica.
+2. Edit one task’s `description` directly in the SQLite `tasks` table without changing its operation history.
+3. Reopen the local replica, sync both replicas, and assert the described outcomes.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: Codex for help understanding the Rust test APIs, and Terminal/Cargo to edit, format, and run the test.
+- What it produced: One SQLite-backed integration test for a manually changed task row.
+- Difficulties: The existing sync examples used in-memory storage, and the first test draft needed formatting.
+- What changed: I used SQLite storage in a separate integration test, formatted it with `cargo fmt`, and confirmed the test and full suite passed.
 
 ---
 
 ## Testing Strategy
 
-[What observable checks prove the fix: your reproduction steps re-run
-against the built change (before and after), and the repo's own test
-suite or checks with the outcome shown. "Tests pass" with nothing
-observable named is not a strategy.]
+I first ran the existing update/delete sync integration test as a baseline; both tests passed, but they use in-memory storage and do not cover a manual SQLite edit. The new test creates and syncs two tasks, changes one task’s SQLite `description` without changing its operation history, then syncs both replicas. It passes and confirms that sync completes, the manually edited task differs between replicas, and the other task remains unchanged on both.
+
+Verification:
+
+- `cargo test --manifest-path /Users/benz.mags/taskchampion/Cargo.toml --test sqlite-task-mismatch-sync` — 1 passed.
+- `cargo fmt --manifest-path /Users/benz.mags/taskchampion/Cargo.toml -- --check` — passed.
+- `cargo test --manifest-path /Users/benz.mags/taskchampion/Cargo.toml` — 432 unit tests passed; integration and doc tests passed.
+- GitHub CI on PR #795 — `checks` and `tests - rust` passed.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: Cargo for formatting and running tests; GitHub Actions for CI results.
+- What it produced: Local test results and CI confirmation for the proposed sync scenario.
+- Difficulties: The pre-existing sync test was not enough because it used in-memory storage.
+- What changed: I added a separate SQLite-backed test and checked that it and the full suite passed.
 
 ---
 
 ## Implementation Notes
 
-[A running log, added to as you work. Date each entry. What you
-built, decisions you made when you made them, wrong turns included.]
+**2026-11-10**
 
-**[Date]**
-
-[Entry]
-
-**[Date]**
-
-[Entry]
+After the maintainer approved a focused integration test, I cloned TaskChampion, read its contribution guide, and ran the existing update/delete sync tests as a baseline; both passed. Those tests used in-memory storage, so I added a separate SQLite-backed test that manually changes one task row and checks sync behavior. My first formatting check found changes to make, so I ran `cargo fmt`; the focused test, full suite, and formatting check then passed. I opened PR #795. GitHub CI passed; the PR remains open and is awaiting review. I used Codex for guidance and ran the commands and tests myself.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: Git, Terminal, Cargo, GitHub, and Codex for coding guidance.
+- What it produced: A tested integration-test commit and PR #795.
+- Difficulties: The existing sync example used in-memory storage, and my first test draft needed formatting.
+- What changed: I used SQLite storage in a new test, formatted it, and ran the focused and full test suites.
 
 ---
 
 ## Pull Request
 
-**PR Link:** [GitHub PR URL when opened]
+**PR Link:** https://github.com/GothenburgBitFactory/taskchampion/pull/795
 
-**PR Description:** [what the PR says; much of the content above
-adapts into it]
+**PR Description:** Adds an integration test that changes one SQLite task row without changing its operation history, syncs both replicas, and checks that the other task remains unchanged. Closes #410.
 
 **Maintainer Feedback:**
 
-- [Date]: [feedback received, or "none yet"; silence is a normal
-  state and costs you nothing]
-- [Date]: [how you addressed it]
+- 2026-11-10: Maintainer djmitche approved my plan to start with one focused integration test.
+- 2026-11-11: No PR review comments yet. The `checks` and `tests - rust` CI workflows passed.
 
-**Status:** [Awaiting review / Iterating / Merged / Closed. The
-status is a fact you record, never a grade: the PR is graded as
-opened.]
+**Status:** Awaiting review; the PR is open and not merged.
 
 **Toolkit**
 
-- Tool:
-- What it produced:
-- Difficulties:
-- What changed:
+- Tool: Git, GitHub CLI, and GitHub Actions.
+- What it produced: PR #795, with the integration test and passing CI checks.
+- Difficulties: My clone initially pointed to the upstream repository, so I needed to create my fork and configure the remotes before pushing.
+- What changed: I pushed the branch to my fork and opened the PR against the upstream repository.
 
 ---
 
@@ -259,25 +185,23 @@ opened.]
 
 **Technical Skills Gained**
 
-[What you learned technically, named concretely.]
+I learned how TaskChampion’s `Replica` sync uses task operation history, how SQLite stores task maps in the `tasks` table, and how to use `rusqlite` in an integration test to edit a temporary database directly. I also learned to run a focused Cargo test, the full Rust test suite, and the formatting check.
 
 **Challenges Overcome**
 
-[What was hard and how you solved it; point at the real events, the
-Toolkit blocks above are full of them.]
+The issue linked to an older test path, and the existing sync example used in-memory storage rather than SQLite. I inspected the current repository, found the SQLite storage and sync APIs, and confirmed a narrow test scope with the maintainer. Rust was new to me, so I used Codex to help me understand the APIs and then ran and checked the test myself.
 
 **What I'd Do Differently Next Time**
 
-[Reflection on your process.]
+I would check the current repository layout and storage type earlier, and run `cargo fmt --check` before reviewing a test draft. I would also keep dated notes on commands and results as I go, so the contribution story is easier to complete.
 
 ---
 
 ## Resources Used
 
-[What actually helped, not a reading list. List things this story
-already shows you using: the doc you followed to set the environment
-up, the thread that explained the bug, the person who answered you.
-One real entry beats ten plausible ones.]
-
 - [Assignment 5 instructions](https://github.com/codepath/ai301-unit5-starter)
 - [AI301 Issue Selection site](https://ai301-issue-selection.vercel.app/)
+- [TaskChampion issue #410 and maintainer guidance](https://github.com/GothenburgBitFactory/taskchampion/issues/410)
+- [TaskChampion contribution guide](https://github.com/GothenburgBitFactory/taskchampion/blob/main/CONTRIBUTING.md)
+- [TaskChampion replica invariant](https://gothenburgbitfactory.org/taskchampion/sync-model.html#replica-invariant)
+- [Existing update/delete sync test](https://github.com/GothenburgBitFactory/taskchampion/blob/main/tests/update-and-delete-sync.rs)
