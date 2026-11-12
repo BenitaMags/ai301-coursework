@@ -16,17 +16,17 @@ Path: `beat-2-contribution/contribution-story.md`
 
 I updated my issue-selection tool into an issue scout with a search strategy and rubric for checking maintainer activity, repository activity, issue scope, availability, contribution policy, and clarity. My first scan did not run because I had left the search queries and ranking filters inside template comments; I moved them outside the comments and reran it. Grading candidate issues taught me that a “good first issue” label alone is not enough when a maintainer has raised an unresolved concern. I recorded scan problems and lessons in my scan notes.
 
-**Unit 6: No verified Unit 6 tool work recorded**
+**Unit 6: Voice guard and issue-scout scope patch**
 
-I have no completed voice-guard or repo-memory work recorded in the materials available for this story, so I cannot report an output or a change for those tools.
+I wrote upstream communication rules for claims, questions, and follow-up pings, then installed the voice guard and its Claude Code hook. I linked the repro-check, plan-check, and PR-precheck tools to the shared voice guide, and changed the repro and plan scopes to allow public repositories. I also patched the issue-scout rubric: a bounded but unfamiliar task can pass the scope-feasible check, while its difficulty is recorded separately. The accepted TaskChampion issue was marked ambitious because Rust and the sync subsystem were new to me and the initial work description was broad. I confirmed a one-test starting scope with the maintainer before coding. The hook is installed; I did not capture a verified hook-block/allow test, so I am not claiming that test passed.
 
-**Unit 7: No verified Unit 7 tool work recorded**
+**Unit 7: Ship gate and project manifest**
 
-I have no completed ship-gate or gate-manifest work recorded in the materials available for this story, so I cannot report an output or a change for those tools.
+I installed the ship-gate and added a local manifest for TaskChampion. It names the full Cargo test suite, the SQLite storage feature-matrix command from CI, and a formatting check. I recorded that no applicable checks were excluded. The installer added the gate hook and changed the local PR-precheck scope for real repositories. I did not capture a successful end-to-end hook run on this branch, so the manifest and installation are verified artifacts, but I am not claiming the gate blocked or cleared a PR attempt.
 
-**Unit 8: No verified Unit 8 tool work recorded**
+**Unit 8: PR monitor and playbook**
 
-I have no completed PR-monitor or playbook work recorded in the materials available for this story. I began the TaskChampion contribution work described below on November 10, after the stated Assignment 5 deadline, so I have not backdated it as Unit 8 work.
+I reviewed five recent merged PRs from non-maintainer contributors to estimate the usual first-response time, then wrote a playbook with response, nudge, and walk-away rules. The monitor found PR #795 approved with 21 checks passing and drafted an optional thank-you. The PR was merged before I posted anything, so I left the draft unposted and recorded the merged outcome.
 
 ---
 
@@ -40,8 +40,8 @@ The scout helped me compare activity, availability, scope, and repository polici
 
 - Tool: issue-scout, using my search strategy and rubric to scan and grade candidates.
 - What it produced: Candidate issue results and an accepted verdict for TaskChampion #410.
-- Difficulties: My first scan did not run because queries and ranking filters were inside template comments. Later, the scan favored very new issues, and the accepted issue used a language outside my stated experience.
-- What changed: I moved the queries and filters outside the comments, recorded ranking and fit problems in scan notes, and asked the maintainer to confirm a focused starting scope.
+- Difficulties: My first scan did not run because queries and ranking filters were inside template comments. Later, the scan favored very new issues, and the accepted issue used a language outside my stated experience. The first rubric treated an open design edge as an automatic scope failure.
+- What changed: I moved the queries and filters outside the comments, recorded ranking and fit problems in scan notes, then patched the rubric to separate bounded scope from difficulty. I marked TaskChampion ambitious and asked the maintainer to confirm a focused starting scope.
 
 ---
 
@@ -65,10 +65,10 @@ The SQLite `tasks` and `operations` tables hold state that can become inconsiste
 
 **Toolkit**
 
-- Tool: GitHub issue #410 and the TaskChampion source and test files.
-- What it produced: An understanding of the replica invariant and the existing sync test patterns.
+- Tool: GitHub issue #410, the TaskChampion source and test files, and my local `CLAUDE.local.md` repo-memory notes.
+- What it produced: An understanding of the replica invariant, current test locations, build commands, and existing sync-test patterns.
 - Difficulties: The issue linked to an older test path, and the existing sync tests used in-memory storage.
-- What changed: I used the current SQLite storage and sync APIs in a separate integration test after confirming the test scope with the maintainer.
+- What changed: I used the current SQLite storage and sync APIs in a separate integration test after confirming the test scope with the maintainer. The repo-memory file is local and excluded from Git.
 
 ---
 
@@ -133,7 +133,7 @@ Verification:
 - `cargo test --manifest-path /Users/benz.mags/taskchampion/Cargo.toml --test sqlite-task-mismatch-sync` — 1 passed.
 - `cargo fmt --manifest-path /Users/benz.mags/taskchampion/Cargo.toml -- --check` — passed.
 - `cargo test --manifest-path /Users/benz.mags/taskchampion/Cargo.toml` — 432 unit tests passed; integration and doc tests passed.
-- GitHub CI on PR #795 — `checks` and `tests - rust` passed.
+- GitHub CI on PR #795 — the PR monitor recorded 21 passing checks before approval and merge.
 
 **Toolkit**
 
@@ -146,9 +146,9 @@ Verification:
 
 ## Implementation Notes
 
-**2026-11-10**
+**2026-11-10 to 2026-11-11 (Eastern)**
 
-After the maintainer approved a focused integration test, I cloned TaskChampion, read its contribution guide, and ran the existing update/delete sync tests as a baseline; both passed. Those tests used in-memory storage, so I added a separate SQLite-backed test that manually changes one task row and checks sync behavior. My first formatting check found changes to make, so I ran `cargo fmt`; the focused test, full suite, and formatting check then passed. I opened PR #795. GitHub CI passed; the PR remains open and is awaiting review. I used Codex for guidance and ran the commands and tests myself.
+After the maintainer approved a focused integration test, I cloned TaskChampion, read its contribution guide, and ran the existing update/delete sync tests as a baseline; both passed. Those tests used in-memory storage, so I added a separate SQLite-backed test that manually changes one task row and checks sync behavior. My first formatting check found changes to make, so I ran `cargo fmt`; the focused test, full suite, and formatting check then passed. I opened PR #795. GitHub reported all 21 checks passing; maintainer djmitche approved it with “This looks good!”, and it was merged at 2026-11-12 02:30 UTC (November 11 Eastern). I used Codex for guidance and ran the commands and tests myself.
 
 **Toolkit**
 
@@ -168,16 +168,16 @@ After the maintainer approved a focused integration test, I cloned TaskChampion,
 **Maintainer Feedback:**
 
 - 2026-11-10: Maintainer djmitche approved my plan to start with one focused integration test.
-- 2026-11-11: No PR review comments yet. The `checks` and `tests - rust` CI workflows passed.
+- 2026-11-11 (Eastern): Maintainer djmitche submitted an approval with the comment “This looks good!” No changes were requested. The monitor recorded 21 passing checks.
 
-**Status:** Awaiting review; the PR is open and not merged.
+**Status:** Merged at 2026-11-12 02:30 UTC (November 11 Eastern). I did not post the monitor’s optional thank-you draft because the PR was already merged.
 
 **Toolkit**
 
-- Tool: Git, GitHub CLI, and GitHub Actions.
-- What it produced: PR #795, with the integration test and passing CI checks.
+- Tool: Git, GitHub CLI, GitHub Actions, and the Unit 8 PR monitor.
+- What it produced: PR #795, an approved review, 21 passing checks, and a merged contribution. The monitor drafted an optional response; I left it unposted after the merge.
 - Difficulties: My clone initially pointed to the upstream repository, so I needed to create my fork and configure the remotes before pushing.
-- What changed: I pushed the branch to my fork and opened the PR against the upstream repository.
+- What changed: I pushed the branch to my fork and opened the PR against the upstream repository, then tracked review feedback and the merge with the monitor.
 
 ---
 
@@ -200,6 +200,9 @@ I would check the current repository layout and storage type earlier, and run `c
 ## Resources Used
 
 - [Assignment 5 instructions](https://github.com/codepath/ai301-unit5-starter)
+- [Unit 6 voice-guard materials](https://github.com/codepath/ai301-unit6-starter)
+- [Unit 7 ship-gate materials](https://github.com/codepath/ai301-unit7-starter)
+- [Unit 8 PR-monitor materials](https://github.com/codepath/ai301-unit8-starter)
 - [AI301 Issue Selection site](https://ai301-issue-selection.vercel.app/)
 - [TaskChampion issue #410 and maintainer guidance](https://github.com/GothenburgBitFactory/taskchampion/issues/410)
 - [TaskChampion contribution guide](https://github.com/GothenburgBitFactory/taskchampion/blob/main/CONTRIBUTING.md)
